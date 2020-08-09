@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        /* 
+在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，
+每一列都按照从上到下递增的顺序排序。请完成一个函数，
+输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+
+示例:
+现有矩阵 matrix 如下：
+[
+  [1,   4,  7, 11, 15],
+  [2,   5,  8, 12, 19],
+  [3,   6,  9, 16, 22],
+  [10, 13, 14, 17, 24],
+  [18, 21, 23, 26, 30]
+]
+给定 target = 5，返回 true。
+给定 target = 20，返回 false。
+
+限制：
+0 <= n <= 1000
+0 <= m <= 1000
+         */
+
+        /**
+         * @param {number[][]} matrix
+         * @param {number} target
+         * @return {boolean}
+         */
+        var matrix = [
+            [1, 4, 7, 11, 15],
+            [2, 5, 8, 12, 19],
+            [3, 6, 9, 16, 22],
+            [10, 13, 14, 17, 24],
+            [18, 21, 23, 26, 30]
+        ]
+
+        // 方法一
+        // 常规冒泡
+        var findNumberIn2DArray = function (matrix, target) {
+            var length1 = matrix.length
+            var length2 = matrix[0].length
+            var result = false
+            for (var i = 0; i < length1; i++) {
+                for (var j = 0; j < length2; j++) {
+                    if (matrix[i][j] === target) {
+                        result = true
+                        break
+                    }
+                }
+            }
+            return result
+        };
+
+        console.log(findNumberIn2DArray(matrix, 5))
+        console.log(findNumberIn2DArray(matrix, 20))
+
+        // 方法二
+        // 数组降维摊平
+        var findNumberIn2DArray2 = function (matrix, target) {
+            return matrix.flat(Infinity).includes(target)
+        };
+        console.log(findNumberIn2DArray2(matrix, 5))
+        console.log(findNumberIn2DArray2(matrix, 20))
+
+        // 方法三
+        // 循环一次，使用includes方法，includes判断一个数组是否包含一个指定值
+        // arr.includes(searchElement, fromIndex)
+        // searchElement	必须。需要查找的元素值。
+        // fromIndex 可选。从该索引处开始查找 searchElement。如果为负值，则按升序从 array.length + fromIndex 的索引开始搜索。默认为 0。
+        var findNumberIn2DArray3 = function (matrix, target) {
+            var mlength = matrix.length
+            for (var i = 0; i < mlength; i++) {
+                if (target >= matrix[i][0] && target <= matrix[i][matrix[i].length - 1]) {
+                    if (matrix[i].includes(target)) {
+                        return true
+                    }
+                }
+            }
+            return false
+        };
+        console.log(findNumberIn2DArray3(matrix, 5))
+        console.log(findNumberIn2DArray3(matrix, 20))
+    </script>
+</body>
+
+</html>

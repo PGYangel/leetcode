@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>找出数组中重复的数字</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        /* 
+在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。
+数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。
+请找出数组中任意一个重复的数字。
+
+示例 1：
+
+输入：
+[2, 3, 1, 0, 2, 5, 3]
+输出：2 或 3 
+
+限制：
+2 <= n <= 100000
+*/
+
+        /**
+         * 方法一
+         * 先排序，然后再循环比对
+         */
+        var arr = [2, 3, 1, 0, 2, 5, 3]
+        var findRepeatNumber = function (nums) {
+            nums.sort()
+            for (var i = 0; i < nums.length; i++) {
+                if (nums[i] === nums[i + 1]) {
+                    return nums[i]
+                }
+            }
+        };
+        console.log(findRepeatNumber(arr));
+
+        // 方法二
+        // 使用obj的key唯一的特性判断
+        var findRepeatNumber2 = function (nums) {
+            var obj = {}
+            for (var i = 0; i < nums.length; i++) {
+                if (obj[nums[i]] !== undefined) {
+                    return nums[i]
+                } else {
+                    obj[nums[i]] = nums[i]
+                }
+            }
+        }
+        console.log(findRepeatNumber2(arr))
+    </script>
+</body>
+
+</html>
