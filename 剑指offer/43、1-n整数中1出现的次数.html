@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+输入一个整数 n ，求1～n这n个整数的十进制表示中1出现的次数。
+例如，输入12，1～12这些整数中包含1 的数字有1、10、11和12，1一共出现了5次。
+
+示例 1：
+输入：n = 12
+输出：5
+
+示例 2：
+输入：n = 13
+输出：6
+
+限制：
+1 <= n < 2^31
+     -->
+    <script>
+        /**
+         * @param {number} n
+         * @return {number}
+         */
+        var countDigitOne = function (n) {
+            var result = 0
+            for (var i = 1; i <= n; i++) {
+                var str = i.toString()
+                if (str.includes('1')) {
+                    var arr = str.split('');
+                    console.log(arr)
+                    for (var j = 0; j < arr.length; j++) {
+
+                        if (arr[j] === "1") {
+                            console.log(arr[j]);
+                            result++
+                        }
+                    }
+                }
+            }
+            return result
+        };
+        console.log(countDigitOne(12));
+        // 上面方法未解决超大数问题，循环不过来，例如输入824883294
+    </script>
+</body>
+
+</html>
